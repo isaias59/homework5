@@ -41,3 +41,10 @@ TEST(ListTests, Compare) {
     list::free(head1);
     list::free(head2);
 }
+TEST(ListTests, CompareWrong) {
+    Node* const head1 = list::from_string("abc");
+    Node* const head2 = list::from_string("xyz");
+    EXPECT_EQ(list::compare(head1, head2, 3), 0); 
+    list::free(head1);
+    list::free(head2);
+}
