@@ -41,6 +41,10 @@ TEST(ListTests, Compare) {
     list::free(head1);
     list::free(head2);
 }
-TEST(ListTests, ReplaceMe) {
-    EXPECT_TRUE(true);
+TEST(ListTests, CompareBuggy) {
+    Node* const head1 = list::from_string("abc");
+    Node* const head2 = list::from_string("abcd");
+    EXPECT_EQ(list::compare(head1, head2, 4), -1);
+    list::free(head1);
+    list::free(head2);
 }
