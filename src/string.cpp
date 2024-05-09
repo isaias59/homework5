@@ -58,7 +58,11 @@ bool String::in_bounds(int index) const {
 
 
 
-char String::operator[](int index) const {
+char String::operator const {
+    if (!in_bounds(index)) {
+        std::cout << "ERROR: Index out of bounds" << std::endl;
+        return '\0';
+    }
     list::Node* node = list::nth(head, index);
     if (node != nullptr) {
         return node->data;
@@ -67,7 +71,6 @@ char String::operator[](int index) const {
         return '\0';
     }
 }
-
 
 
 int String::size() const {
