@@ -34,6 +34,10 @@ TEST(ListTests, Length) {
 // Add remaining tests below. All tests should follow
 // the format of `TEST(ListTests, <TestName>){}`.
 
-TEST(ListTests, ReplaceMe) {
-    EXPECT_TRUE(false);
+TEST(ListTests, Compare) {
+    Node* const head1 = list::from_string("abc");
+    Node* const head2 = list::from_string("abd");
+    EXPECT_EQ(list::compare(head1, head2, 3), -1);
+    list::free(head1);
+    list::free(head2);
 }
