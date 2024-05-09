@@ -82,33 +82,25 @@ namespace list {
         }
     }
    
-    int compare(Node* lhs, Node* rhs, int n) {
-        while (n-- > 0 && lhs != nullptr && rhs != nullptr && lhs->data == rhs->data) {
-            lhs = lhs->next;
-            rhs = rhs->next;
+   int compare(Node* lhs, Node* rhs, int n) {
+    while (n-- > 0 && lhs != nullptr && rhs != nullptr) {
+        if (lhs->data != rhs->data) {
+            return (lhs->data < rhs->data) ? -1 : 1;
         }
-
-        if (n <= 0 || (lhs == nullptr && rhs == nullptr)) {
-            return 0;
-        }
-
-        else if (lhs == nullptr) {
-            return -1;
-        }
-
-        else if (rhs == nullptr) {
-            return 1;
-        }
-
-        else {
-            if (lhs->data < rhs->data) {
-                return -1;
-            }
-            else {
-                return 1;
-            }
-        }
+        lhs = lhs->next;
+        rhs = rhs->next;
     }
+
+    if (n < 0) {
+        return 0; 
+    } else if (lhs == nullptr && rhs != nullptr) {
+        return -1; // lhs is shorter than rhs
+    } else if (lhs != nullptr && rhs == nullptr) {
+        return 1; 
+    } else {
+        return 0; 
+    }
+}
 
     int length(Node* head) {
         int count = 0;
