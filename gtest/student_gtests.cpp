@@ -61,3 +61,44 @@ TEST(ListTests, Reverse) {
     list::free(head);
     list::free(reversed_head);
 }
+TEST(ListTests, Append) {
+    Node* const head1 = list::from_string("foo");
+    Node* const head2 = list::from_string("bar");
+    Node* const appended_head = list::append(head1, head2);
+    EXPECT_EQ(list::length(appended_head), 6);
+    list::free(head1);
+    list::free(head2);
+    list::free(appended_head);
+}
+TEST(ListTests, Index) {
+    Node* const head = list::from_string("foo");
+    Node* const node = list::nth(head, 1);
+    EXPECT_EQ(list::index(head, node), 1);
+    list::free(head);
+}
+TEST(ListTests, FindChar) {
+    Node* const head = list::from_string("foo");
+    Node* const node = list::find_char(head, 'o');
+    EXPECT_EQ(node->data, 'o');
+    list::free(head);
+}
+TEST(ListTests, FindList) {
+    Node* const haystack = list::from_string("foobar");
+    Node* const needle = list::from_string("bar");
+    Node* const node = list::find_list(haystack, needle);
+    EXPECT_EQ(node->data, 'b');
+    list::free(haystack);
+    list::free(needle);
+}
+TEST(ListTests, Nth) {
+    Node* const head = list::from_string("foo");
+    Node* const node = list::nth(head, 1);
+    EXPECT_EQ(node->data, 'o');
+    list::free(head);
+}
+TEST(ListTests, Last) {
+    Node* const head = list::from_string("foo");
+    Node* const node = list::last(head);
+    EXPECT_EQ(node->data, 'o');
+    list::free(head);
+}
