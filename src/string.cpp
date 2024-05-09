@@ -116,12 +116,10 @@ String String::operator+(const String& s) const {
 }
 
 String& String::operator+=(const String& s) {
-    list::Node* combined_head = list::append(head, s.head);
-    list::free(head);
-    head = combined_head;
+    list::Node* tail = list::last(head);
+    tail->next = list::copy(s.head);
     return *this;
 }
-
 void String::print(std::ostream& out) const {
     list::print(out, head);
 }
