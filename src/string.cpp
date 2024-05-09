@@ -58,7 +58,7 @@ bool String::in_bounds(int index) const {
 
 
 
-char String::operator const {
+char String::operator [](int index) const{
     if (!in_bounds(index)) {
         std::cout << "ERROR: Index out of bounds" << std::endl;
         return '\0';
