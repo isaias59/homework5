@@ -125,3 +125,46 @@ TEST(ListTests, CompareTwo) {
     list::free(head1);
     list::free(head2);
 }
+
+///////////
+
+Copy code
+TEST(ListTests, CompareTwoEmptyLists) {
+    Node* const head1 = list::from_string("");
+    Node* const head2 = list::from_string("");
+    EXPECT_EQ(list::compare(head1, head2), 0); // Both lists are empty
+    list::free(head1);
+    list::free(head2);
+}
+
+TEST(ListTests, CompareEmptyAndNonEmptyList) {
+    Node* const head1 = list::from_string("");
+    Node* const head2 = list::from_string("abc");
+    EXPECT_EQ(list::compare(head1, head2), -1); // Empty list comes before non-empty list
+    list::free(head1);
+    list::free(head2);
+}
+
+TEST(ListTests, CompareNonEmptyAndEmptyList) {
+    Node* const head1 = list::from_string("abc");
+    Node* const head2 = list::from_string("");
+    EXPECT_EQ(list::compare(head1, head2), 1); // Non-empty list comes after empty list
+    list::free(head1);
+    list::free(head2);
+}
+
+TEST(ListTests, CompareEqualLists) {
+    Node* const head1 = list::from_string("abc");
+    Node* const head2 = list::from_string("abc");
+    EXPECT_EQ(list::compare(head1, head2), 0); // Lists are equal
+    list::free(head1);
+    list::free(head2);
+}
+
+TEST(ListTests, CompareUnequalLists) {
+    Node* const head1 = list::from_string("abc");
+    Node* const head2 = list::from_string("def");
+    EXPECT_EQ(list::compare(head1, head2), -1); // List1 comes before List2 lexicographically
+    list::free(head1);
+    list::free(head2);
+}
