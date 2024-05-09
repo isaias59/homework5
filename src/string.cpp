@@ -78,13 +78,12 @@ int String::size() const {
 String String::reverse() const {
     list::Node* reversed_head = list::reverse(head);
     return String(reversed_head); 
-
+}
 
 int String::indexOf(char c) const {
     list::Node* node = list::find_char(head, c);
     return list::index(head, node);
 }
-
 int String::indexOf(const String& s) const {
     list::Node* node = list::find_list(head, s.head);
     return list::index(head, node);
