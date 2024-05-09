@@ -102,3 +102,26 @@ TEST(ListTests, Last) {
     EXPECT_EQ(node->data, 'o');
     list::free(head);
 }
+TEST(ListTests, Print) {
+    Node* const head = list::from_string("foo");
+    stringstream ss;
+    list::print(ss, head);
+    EXPECT_EQ(ss.str(), "foo"); 
+    list::free(head);
+}
+
+TEST(ListTests, Copy) {
+    Node* const head = list::from_string("foo");
+    Node* const copy_head = list::copy(head);
+    EXPECT_NE(head, copy_head); 
+    list::free(head);
+    list::free(copy_head);
+}
+
+TEST(ListTests, CompareTwo) {
+    Node* const head1 = list::from_string("abc");
+    Node* const head2 = list::from_string("abc");
+    EXPECT_EQ(list::compare(head1, head2), 0); 
+    list::free(head1);
+    list::free(head2);
+}
