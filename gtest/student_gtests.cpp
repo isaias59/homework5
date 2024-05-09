@@ -42,3 +42,22 @@ TEST(ListTests, Compare) {
     list::free(head1);
     list::free(head2);
 }
+TEST(ListTests, Reverse) {
+    Node* const head = list::from_string("foo");
+    Node* const reversed_head = list::reverse(head);
+    Node* reversed_list = reversed_head;
+
+    EXPECT_EQ(reversed_list->data, 'o');
+    ASSERT_NE(reversed_list->next, nullptr);
+
+    reversed_list = reversed_list->next;
+    EXPECT_EQ(reversed_list->data, 'o');
+    ASSERT_NE(reversed_list->next, nullptr);
+
+    reversed_list = reversed_list->next;
+    EXPECT_EQ(reversed_list->data, 'f');
+    ASSERT_EQ(reversed_list->next, nullptr);
+
+    list::free(head);
+    list::free(reversed_head);
+}
